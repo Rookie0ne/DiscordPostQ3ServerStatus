@@ -11,5 +11,6 @@ Once a server is considered active (meaning there are players on it) and the mes
 # Dependencies:
 - python (for JSON escaping)
 - QStat (https://github.com/multiplay/qstat)
+- Discord server with Webhook enabled (https://support.discordapp.com/hc/en-us/articles/228383668-Intro-to-Webhooks)
 
 There are definitely more elegant ways to do this but this works for me :-)
