@@ -1,0 +1,45 @@
+#1/bin/bash
+server1=188.62.55.89:27951
+server2=3.121.215.166:27960
+server1gametype=iourts
+server2gametype=iourts
+server1status=empty
+server2status=empty
+server1active=false
+server2active=false
+playersServer1=0
+playersServer2=0
+discordWebHookURL=https://discordapp.com/api/webhooks/YOURIDHERE
+discordUsername=ServerWatch
+
+while true
+do
+	playersServer1=$(qstat -$server1gametype $server1 -raw , | cut -d ',' -f6)
+	if [ $playersServer1 -gt 0 ]
+	then
+		if [ "$server1active" = "false" ]
+		then
+			server1active=true
+			sendDiscordMessage "$discordWebHookURL" "$discordUsername" "$playersServer1 players online: $(qstat -$server1gametype $server1 -P -nh)"
+		fi
+	else
+		server1active=false
+	fi
+
+	playersServer2=$(qstat -$server2gametype $server2 -raw , | cut -d ',' -f6)
+	if [ $playersServer2 -gt 0 ]
+	then
+		if [ "$server2active" = "false" ]
+		then
+			server2active=true
+			sendDiscordMessage "$discordWebHookURL" "$discordUsername" "$playersServer2 players online: $(qstat -$server2gametype $server2 -P -nh)"
+		fi
+	else
+		server2active=false
+	fi
+
+	sleep 2m
+done
+
+
+
