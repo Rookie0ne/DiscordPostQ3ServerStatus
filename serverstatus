@@ -1,4 +1,4 @@
-#1/bin/bash
+#!/bin/bash
 server1=188.62.55.89:27951
 server2=3.121.215.166:27960
 server1gametype=iourts
